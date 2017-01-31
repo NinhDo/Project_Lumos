@@ -7,4 +7,4 @@ def detected_callback():
 
 
 detector = snowboydecoder.HotwordDetector("Hey__Jarvis.pmdl", sensitivity=0.5, audio_gain=1)
-detector.start(detected_callback)
+detector.start(detected_callback, sleep_time=0.03)
