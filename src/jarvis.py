@@ -24,7 +24,7 @@ def detected_callback():
 
 # Wakes up the mangostation
 def wake_up():
-    subprocess.call(["wakeonlan", "-f ~/mangostation"]);
+    subprocess.call(["wakeonlan", "-f /home/pi/mangostation"]);
 
 # Set up the detector, so it looks after "Hey, Jarvis"
 detector = snowboydecoder.HotwordDetector(
