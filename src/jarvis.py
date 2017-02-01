@@ -37,7 +37,7 @@ def main():
     # Start listening. Every sleep_time seconds, the function checks if the hotword was detected and calls the callback function, and if we interrupted the program so it can terminate properly
     detector.start(
         detected_callback,
-        interrupted_check=interrupt_callback,
+        interrupt_check=interrupt_callback,
         sleep_time=0.03
     )
 
