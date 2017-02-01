@@ -21,6 +21,7 @@ detector = snowboydecoder.HotwordDetector(
 def signal_handler(signal, frame):
 	global interrupted
 	interrupted = True
+	terminate()
 
 # For termination
 def interrupt_callback():
@@ -52,4 +53,7 @@ def start():
 	)
 
 	print "Goodbye."
+
+# Detector, kill thyself
+def terminate():
 	detector.terminate()
