@@ -9,6 +9,13 @@ import google_speech_api_listener as google_listener
 # For termination
 interrupted = False
 
+# Set up the detector, so it looks after "Hey, Jarvis"
+detector = snowboydecoder.HotwordDetector(
+	"./Hey__Jarvis.pmdl",
+	sensitivity=0.5,
+	audio_gain=1
+)
+
 # If we signal the program to stop
 def signal_handler(signal, frame):
 	global interrupted
@@ -21,15 +28,17 @@ def interrupt_callback():
 
 # What to do when you hear a word
 def detected_callback():
-	utils.query_handler(google_listener.start())
 	print "hotword detected"
+	# Stop listening to free the Microphone
+	detector.terminate()
+	utils.query_handler(google_listener.start())
+	# Start it again
+	detector.start(
+		detected_callback,
+		interrupt_check=interrupt_callback,
+		sleep_time=0.03
+	)
 
-# Set up the detector, so it looks after "Hey, Jarvis"
-detector = snowboydecoder.HotwordDetector(
-	"./Hey__Jarvis.pmdl",
-	sensitivity=0.5,
-	audio_gain=1
-)
 
 # capture SIGINT signal, e.g., Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
