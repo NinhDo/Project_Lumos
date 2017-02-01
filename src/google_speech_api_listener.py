@@ -179,6 +179,7 @@ def listen_print_loop(recognize_stream):
 			query = (transcript + overwrite_chars)
 			print query
 			print('Done listening.')
+			recognize_stream.cancel()
 			return query
 
 
@@ -201,7 +202,6 @@ def start():
 		# Now, put the transcription responses to use.
 		try:
 			query = listen_print_loop(recognize_stream)
-			recognize_stream.cancel()
 			return query
 		except grpc.RpcError as e:
 			code = e.code()
