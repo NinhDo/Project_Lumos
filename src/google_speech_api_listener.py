@@ -197,7 +197,7 @@ def start():
 			requests, DEADLINE_SECS)
 
 		# Exit things cleanly on interrupt
-		signal.signal(signal.SIGINT, lambda *_: recognize_stream.cancel())
+		#signal.signal(signal.SIGINT, lambda *_: recognize_stream.cancel())
 
 		# Now, put the transcription responses to use.
 		try:
