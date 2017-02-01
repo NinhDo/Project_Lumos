@@ -3,6 +3,8 @@ import snowboydecoder
 import signal
 # import our utilities
 import utils
+# import our google speech api listner
+import google_speech_api_listener as google_listener
 
 # For termination
 interrupted = False
@@ -19,7 +21,7 @@ def interrupt_callback():
 
 # What to do when you hear a word
 def detected_callback():
-	utils.wake_up()
+	utils.query_handler(google_listener.start())
 	print "hotword detected"
 
 # Set up the detector, so it looks after "Hey, Jarvis"
