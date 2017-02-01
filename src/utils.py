@@ -8,6 +8,6 @@ def wake_up():
 #Goes through the query
 def query_handler(query):
     if "on" in query and "computer" in query:
-        wake_up
+        wake_up()
     else:
-        print query
+        print "query_handler got " + query

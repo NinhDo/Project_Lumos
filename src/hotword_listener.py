@@ -1,6 +1,7 @@
 # The hotword detector
 import snowboydecoder
 import signal
+import time
 # import our utilities
 import utils
 # import our google speech api listner
@@ -30,14 +31,10 @@ def interrupt_callback():
 def detected_callback():
 	print "hotword detected"
 	# Stop listening to free the Microphone
-	detector.terminate()
+	global interrupted
+	interrupted = True
 	utils.query_handler(google_listener.start())
-	# Start it again
-	detector.start(
-		detected_callback,
-		interrupt_check=interrupt_callback,
-		sleep_time=0.03
-	)
+	interrupted = False
 
 
 # capture SIGINT signal, e.g., Ctrl+C

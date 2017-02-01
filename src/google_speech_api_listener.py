@@ -176,8 +176,10 @@ def listen_print_loop(recognize_stream):
 			num_chars_printed = len(transcript)
 
 		else:
+			query = (transcript + overwrite_chars)
+			print query
 			print('Done listening.')
-			return (transcript + overwrite_chars)
+			return query
 
 
 def start():
